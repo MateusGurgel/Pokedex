@@ -16,15 +16,15 @@ export default function Home() {
   const [selectedPokemonKey, setSelectedPokemonKey] = useState<string>("");
 
   const { loading, data } = useQuery(GET_ALL_POKEMONS, {
-    variables: { offset: 0, take: 1015 },
+    variables: { offset: 0, take: 10 },
   });
 
   useEffect(() => {
     if (!data) {
       return;
     }
-
     setPokemons(data.getAllPokemon);
+    setSelectedPokemonKey(data.getAllPokemon[0].key)
   }, [data]);
 
   return (
@@ -58,7 +58,7 @@ export default function Home() {
         </Flex>
       </Flex>
       <HStack spacing={34}>
-        <PokemonVisualizer />
+        <PokemonVisualizer selectedPokemonKey={selectedPokemonKey} />
         <PokemonList
           isLoading={loading}
           pokemons={pokemons}
