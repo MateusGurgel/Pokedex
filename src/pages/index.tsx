@@ -14,7 +14,7 @@ export default function Home() {
   const [selectedPokemonKey, setSelectedPokemonKey] = useState<string>("");
 
   const { loading, data } = useQuery(GET_ALL_POKEMONS, {
-    variables: { offset: 0, take: 10 },
+    variables: { offset: 0, take: 200 },
   });
 
   useEffect(() => {
@@ -22,12 +22,12 @@ export default function Home() {
       return;
     }
     setPokemons(data.getAllPokemon);
-    setSelectedPokemonKey(data.getAllPokemon[0].key)
+    setSelectedPokemonKey(data.getAllPokemon[0].key);
   }, [data]);
 
   return (
     <Box>
-      <Flex gap={8} align={"center"} h="max">
+      <Flex gap={8} align={"center"} h="max" mb={6}>
         <Circle
           size="60px"
           bg="blue"
