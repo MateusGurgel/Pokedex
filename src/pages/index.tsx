@@ -84,7 +84,7 @@ export default function Home() {
           </Box>
         </Stack>
 
-        <Stack h={"80vh"} width={"30vw"} maxWidth={537} overflow={"auto"} paddingX={3}>
+        <Stack h={"80vh"} width={"30vw"} maxWidth={537} overflow={"auto"} paddingX={3} overflowX="hidden">
           {!loading ? (
             pokemons.map((pokemon, index) => (
               <PokemonButton
