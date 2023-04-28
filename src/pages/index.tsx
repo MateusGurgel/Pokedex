@@ -1,11 +1,9 @@
-import { PokemonButton } from "@/components/pokemonButton";
-import { PokemonButtonSkeleton } from "@/components/pokemonButtonSkeleton";
-import { PokemonList } from "@/components/pokemonList";
 import { PokemonVisualizer } from "@/components/pokemonVisualizer";
+import { Box, Circle, Flex, HStack } from "@chakra-ui/react";
+import { PokemonList } from "@/components/pokemonList";
 import { GET_ALL_POKEMONS } from "@/graphQL/pokemon";
-import { useQuery } from "@apollo/client";
-import { Box, Circle, Flex, HStack, Stack, Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
 
 interface Pokemon {
   key: string;

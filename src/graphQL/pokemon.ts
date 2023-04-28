@@ -8,4 +8,20 @@ const GET_ALL_POKEMONS = gql`
   }
 `;
 
-export {GET_ALL_POKEMONS}
+const GET_POKEMON = gql`
+  query getPokemon($pokemon: PokemonEnum!) {
+    getPokemon(pokemon: $pokemon) {
+      baseStats {
+        attack
+        defense
+        hp
+        specialattack
+        specialdefense
+        speed
+      }
+      sprite
+    }
+  }
+`;
+
+export {GET_ALL_POKEMONS, GET_POKEMON}
