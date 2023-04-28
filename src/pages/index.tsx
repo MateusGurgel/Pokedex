@@ -10,10 +10,12 @@ interface Pokemon {
 }
 
 export default function Home() {
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [selectedPokemonKey, setSelectedPokemonKey] = useState<string>("");
+
   const { loading, data } = useQuery(GET_ALL_POKEMONS, {
     variables: { offset: 0, take: 1015 },
   });
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     if (!data) {
@@ -22,8 +24,6 @@ export default function Home() {
 
     setPokemons(data.getAllPokemon);
   }, [data]);
-
-  
 
   return (
     <Box>
@@ -91,6 +91,7 @@ export default function Home() {
                 key={index}
                 name={pokemon.key}
                 code={index.toString()}
+                OnClick={setSelectedPokemonKey}
               />
             ))
           ) : (
