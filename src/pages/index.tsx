@@ -1,7 +1,8 @@
 import { PokemonButton } from "@/components/pokemonButton";
+import { PokemonButtonSkeleton } from "@/components/pokemonButtonSkeleton";
 import { GET_ALL_POKEMONS } from "@/graphQL/pokemon";
 import { useQuery } from "@apollo/client";
-import { Box, Circle, Flex, HStack, Stack } from "@chakra-ui/react";
+import { Box, Circle, Flex, HStack, Stack, Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 interface Pokemon {
@@ -9,19 +10,20 @@ interface Pokemon {
 }
 
 export default function Home() {
-  //GraphQLPokemonResponse
-  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {variables: { offset: 0, take: 1015 }});
+  const { loading, data } = useQuery(GET_ALL_POKEMONS, {
+    variables: { offset: 0, take: 1015 },
+  });
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-
-    if (!data){
-      return
+    if (!data) {
+      return;
     }
 
-    setPokemons(data.getAllPokemon)
-  }
-  , [data]);
+    setPokemons(data.getAllPokemon);
+  }, [data]);
+
+  
 
   return (
     <Box>
@@ -82,15 +84,21 @@ export default function Home() {
           </Box>
         </Stack>
 
-        <Stack h={"80vh"} width={"30vw"} maxWidth={537} overflow={"auto"}>
-          {pokemons &&
+        <Stack h={"80vh"} width={"30vw"} maxWidth={537} overflow={"auto"} paddingX={3}>
+          {!loading ? (
             pokemons.map((pokemon, index) => (
               <PokemonButton
                 key={index}
                 name={pokemon.key}
                 code={index.toString()}
               />
-            ))}
+            ))
+          ) : (
+
+            Array.from({ length: 9 }, (_, index) => (
+              <PokemonButtonSkeleton key={index} {...{ index }} />
+            ))
+          )}
         </Stack>
       </HStack>
     </Box>
