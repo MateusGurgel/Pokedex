@@ -1,7 +1,7 @@
 
 # Pokedex
 
-Pokedex is a web app that simulate a pokemon's pokedex. this project was made for learning purposes
+The Pokedex is a web application that simulates a Pokemon's Pokedex. This project was created for the purpose of learning.
 
 
 ## Demo
